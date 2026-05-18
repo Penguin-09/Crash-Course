@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
     // Stop game simulation when timer reaches 0 or when player falls below map
     void GameOver()
     {
-        GameOverText.text = "Game Over!";
+        GameOverText.text = "Game Over! Je had beter leren rijden bij Best Education, wij lanceren je de toekomst in!";
         RestartButton.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
