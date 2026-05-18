@@ -2,6 +2,8 @@ using System.Security;
 using UnityEngine;
 using TMPro;
 using System.Diagnostics;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI TimeText;
     public TextMeshProUGUI CountdownText;
     public TextMeshProUGUI GameOverText;
+    public Button RestartButton;
 
     public float speed = 20000.0f;
     public float turnSpeed = 75.0f;
@@ -31,7 +34,10 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         playerAudio = GetComponent<AudioSource>();
+        RestartButton.onClick.AddListener(RestartGame);
+        RestartButton.gameObject.SetActive(false);
 
+        Time.timeScale = 1f;
         InvokeRepeating("IncrementTimer", 1.0f, 1.0f);
     }
 
@@ -152,6 +158,14 @@ public class PlayerController : MonoBehaviour
     void GameOver()
     {
         GameOverText.text = "Game Over!";
+        RestartButton.gameObject.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    // Restart the game by reloading the current scene and resuming time
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
