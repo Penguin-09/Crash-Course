@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public Button RestartButton;
 
     public float speed = 20000.0f;
-    public float turnSpeed = 75.0f;
+    public float turnSpeed = 90.0f;
 
     private float horizontalInput;
     private float verticalInput;
@@ -93,6 +93,13 @@ public class PlayerController : MonoBehaviour
         {
             CountdownText.text = "";
             GameOver();
+        }
+
+        // Restart the game when the player presses the R key
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+            return;
         }
     }
     
